@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ohMyBeerAdmin';
+  title = 'Oh! My Beer Admin Be(er)reich';
+  public links = ['brewery', 'Second', 'Third'];
+  public background: ThemePalette;
+  activeLink = this.links[0];
+
+  toggleBackground() {
+    this.background = this.background ? undefined : 'primary';
+  }
 }
