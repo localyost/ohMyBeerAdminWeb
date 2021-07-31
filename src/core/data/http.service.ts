@@ -15,8 +15,8 @@ export abstract class HttpService {
 
   protected abstract getEntityName() : string;
 
-  public getAll(page: number) {
+  getAll(page: number) {
     const params =  {size: 20, page};
-    this.http.get(`${this.rootUrl}${this.entityName}`,{params}).subscribe(value => console.log(value))
+    return this.http.get(`${this.rootUrl}${this.entityName}`,{params});
   }
 }
