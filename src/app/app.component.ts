@@ -8,7 +8,7 @@ import {ThemePalette} from "@angular/material/core";
 })
 export class AppComponent {
   title = 'Oh! My Beer Admin Be(er)reich';
-  public links = ['brewery', 'Second', 'Third'];
+  public links = ['breweries', 'beer', 'Third'];
   public background: ThemePalette;
   activeLink = this.links[0];
 

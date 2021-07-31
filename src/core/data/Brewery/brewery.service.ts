@@ -9,6 +9,9 @@ export class BreweryService extends HttpService {
 
   public constructor(protected http: HttpClient) {
     super(http);
-    this.entityName = "breweries"
+  }
+
+  protected getEntityName(): string {
+    return "breweries";
   }
 }
