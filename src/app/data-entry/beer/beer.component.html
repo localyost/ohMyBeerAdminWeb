@@ -1,6 +1,10 @@
+<app-create-button></app-create-button>
+
 <app-data-table
   [columns]="columns"
   [dataSource]="data"
   [total]="total"
   (pageEvent)="onPage($event)"
 ></app-data-table>
+
+<router-outlet></router-outlet>

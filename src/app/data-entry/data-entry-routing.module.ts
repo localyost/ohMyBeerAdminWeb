@@ -5,9 +5,9 @@ import { DataEntryComponent } from './data-entry.component';
 const routes: Routes = [
   { path: 'data-entry', component: DataEntryComponent, children: [
       { path: 'beer', loadChildren: () => import('./beer/beer.module').then(m => m.BeerModule) },
-      { path: 'brewery', loadChildren: () => import('./brewery/brewery.module').then(m => m.BreweryModule) },
+      { path: 'brewery', loadChildren: () => import('./brewery/brewery.module').then(m => m.BreweryModule) }
     ]
-  }
+  },
 ];
 
 @NgModule({
