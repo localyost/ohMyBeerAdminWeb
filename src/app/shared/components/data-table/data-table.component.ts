@@ -1,5 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Column} from "./Column";
+import {PageEvent} from "@angular/material/paginator";
+import {PAGE_SIZE} from "../../../core/services/http/http.service";
+
 
 @Component({
   selector: 'app-data-table',
@@ -8,21 +11,24 @@ import {Column} from "./Column";
 })
 export class DataTableComponent implements OnInit {
 
-  constructor() { }
   @Input()
-  public dataSource = [];
+  public dataSource: any[] = [];
   @Input()
   public columns: Column[] = [];
-  private currentPage = 1;
+  @Input()
+  public total: number | undefined;
+  @Output()
+  public pageEvent: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
+
+  public pageSize = PAGE_SIZE;
   public displayedColumns: string[] = [];
 
   ngOnInit(): void {
     this.displayedColumns = this.columns.map(value => value.key);
+    this.displayedColumns.push('actionButtons');
   }
 
-  public onTableScroll(e: any) {
-
-    // this.currentPage++
-    // this.dataSource = this.beerService.getAll(this.currentPage);
+  public onPage(pageEvent: PageEvent) {
+    this.pageEvent.emit(pageEvent);
   }
 }

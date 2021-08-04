@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Response} from "../../../shared/interfaces/EntityInterfaces";
 
 @Injectable()
 export class HttpService {
@@ -9,7 +10,9 @@ export class HttpService {
   public constructor(protected http: HttpClient) { }
 
   public get<T>(page: number, path: string) {
-    const params =  {size: 20, page};
-    return this.http.get<T>(`${this.rootUrl}${path}`,{params});
+    const params =  {size: PAGE_SIZE, page};
+    return this.http.get<Response<T>>(`${this.rootUrl}${path}`,{params});
   }
 }
+
+export const PAGE_SIZE = 50;

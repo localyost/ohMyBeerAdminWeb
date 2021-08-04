@@ -1,1 +1,3 @@
-export class Beer {}
+export class Beer {
+
+}
