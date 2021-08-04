@@ -1,12 +1,4 @@
-<mat-toolbar color="primary">
-  <span>Admin Be(er)reich</span>
-</mat-toolbar>
-<nav mat-tab-nav-bar [backgroundColor]="background">
-  <a mat-tab-link routerLink="/{{link}}" *ngFor="let link of links"
-     (click)="activeLink = link"
-     [active]="activeLink == link"> {{link}} </a>
-</nav>
-
+<app-navigation></app-navigation>
 
 <div style="padding: 1%">
   <router-outlet></router-outlet>

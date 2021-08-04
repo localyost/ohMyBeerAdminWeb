@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {ThemePalette} from "@angular/material/core";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +7,4 @@ import {ThemePalette} from "@angular/material/core";
 })
 export class AppComponent {
   title = 'Oh! My Beer Admin Be(er)reich';
-  public links = ['breweries', 'beer', 'Third'];
-  public background: ThemePalette;
-  activeLink = this.links[0];
-
-  toggleBackground() {
-    this.background = this.background ? undefined : 'primary';
-  }
 }

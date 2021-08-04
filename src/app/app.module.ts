@@ -8,6 +8,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatTabsModule} from "@angular/material/tabs";
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
+import {CoreModule} from "./core/core.module";
+import {MaterialDesignModule} from "./shared/material-design/material-design.module";
 
 
 @NgModule({
@@ -15,11 +17,10 @@ import {AppRoutingModule} from './app-routing.module';
     AppComponent
   ],
   imports: [
+    CoreModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatTabsModule,
+    MaterialDesignModule,
     HttpClientModule,
     AppRoutingModule
   ],
