@@ -3,6 +3,7 @@ import {EntityService} from "../../shared/interfaces/EntityInterfaces";
 import {Brewery} from "../model/brewery";
 import {Observable} from "rxjs";
 import {HttpService} from "../../core/services/http/http.service";
+import {QueryParams} from "../../core/interfaces/QueryParams";
 
 @Injectable()
 export class BreweryService implements EntityService<Brewery>{
@@ -10,11 +11,12 @@ export class BreweryService implements EntityService<Brewery>{
   private path = 'breweries';
   constructor(private readonly httpService: HttpService) { }
 
-  fetchMany(page: number) {
-    return this.httpService.fetchMany<Brewery>(page, this.path);
+  fetchMany(params: QueryParams) {
+    return this.httpService.fetchMany<Brewery>(this.path, params);
   }
 
-  fetchOne(id: number): Observable<Brewery> {
-    return this.httpService.fetchOne<Brewery>(id, this.path);
+  fetchOne(id: number, {props}: QueryParams): Observable<Brewery> {
+    return this.httpService.fetchOne<Brewery>(id, this.path, {props});
   }
+
 }

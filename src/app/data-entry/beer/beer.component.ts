@@ -30,7 +30,8 @@ export class BeerComponent implements OnInit {
   }
 
   private getBeer(page: number) {
-    this.beerService.fetchMany(page).toPromise().then(response => {
+    const props = this.columns.map(value => value.key);
+    this.beerService.fetchMany({page, props}).toPromise().then(response => {
       this.data = response.content;
       this.total = response.total;
     });

@@ -23,7 +23,8 @@ export class BreweryComponent implements OnInit {
   }
 
   private getBreweries(page: number) {
-    this.breweryService.fetchMany(page).toPromise().then(response => {
+    const props = this.columns.map(value => value.key);
+    this.breweryService.fetchMany({page, props}).toPromise().then(response => {
       this.data = response.content;
       this.total = response.total;
 
