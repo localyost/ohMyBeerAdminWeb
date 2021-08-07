@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BeerService} from "../services/beer.service";
 import {Column} from "../../shared/components/data-table/Column";
-import {Beer} from "../module/beer";
+import {Beer} from "../model/beer";
 import {PageEvent} from "@angular/material/paginator";
+import {MatDialog} from "@angular/material/dialog";
+import {EditBeerComponent} from "./edit-beer/edit-beer.component";
 
 @Component({
   selector: 'app-beer',
@@ -11,7 +13,7 @@ import {PageEvent} from "@angular/material/paginator";
 })
 export class BeerComponent implements OnInit {
 
-  constructor(private beerService: BeerService) { }
+  constructor(private beerService: BeerService, public dialog: MatDialog) { }
   public data: Beer[] = [];
   public total = 0;
 
@@ -28,7 +30,7 @@ export class BeerComponent implements OnInit {
   }
 
   private getBeer(page: number) {
-    this.beerService.getMany(page).toPromise().then(response => {
+    this.beerService.fetchMany(page).toPromise().then(response => {
       this.data = response.content;
       this.total = response.total;
     });
@@ -36,6 +38,16 @@ export class BeerComponent implements OnInit {
 
   public onPage(pageEvent: PageEvent) {
     this.getBeer(pageEvent.pageIndex);
+  }
+
+  public onEditBeer(beerId: number) {
+    this.beerService.fetchOne(beerId).toPromise().then(beer => {
+      this.dialog.open(EditBeerComponent, {data: beer})
+    })
+  }
+
+  public onCreate() {
+    this.dialog.open(EditBeerComponent, {data: {}})
   }
 
 }

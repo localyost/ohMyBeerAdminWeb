@@ -9,9 +9,13 @@ export class HttpService {
 
   public constructor(protected http: HttpClient) { }
 
-  public get<T>(page: number, path: string) {
+  public fetchMany<T>(page: number, path: string) {
     const params =  {size: PAGE_SIZE, page};
     return this.http.get<Response<T>>(`${this.rootUrl}${path}`,{params});
+  }
+
+  public fetchOne<T>(id: number, path: string) {
+    return this.http.get<T>(`${this.rootUrl}${path}/${id}`);
   }
 }
 

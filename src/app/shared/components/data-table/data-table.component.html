@@ -16,7 +16,7 @@
       <ng-container matColumnDef="actionButtons">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button routerLink="{{element.id}}" mat-icon-button color="primary">
+          <button (click)="onEditClick(element.id)" mat-icon-button color="primary">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn">

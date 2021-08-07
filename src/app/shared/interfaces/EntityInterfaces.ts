@@ -1,7 +1,8 @@
 import {Observable} from "rxjs";
 
 export interface EntityService<T> {
-  getMany(page: number): Observable<Response<T>>;
+  fetchMany(page: number): Observable<Response<T>>;
+  fetchOne(id: number): Observable<T>;
 }
 
 export interface Response<T> {

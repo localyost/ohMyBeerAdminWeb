@@ -19,6 +19,8 @@ export class DataTableComponent implements OnInit {
   public total: number | undefined;
   @Output()
   public pageEvent: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
+  @Output()
+  public editEvent: EventEmitter<number> = new EventEmitter<number>();
 
   public pageSize = PAGE_SIZE;
   public displayedColumns: string[] = [];
@@ -30,5 +32,9 @@ export class DataTableComponent implements OnInit {
 
   public onPage(pageEvent: PageEvent) {
     this.pageEvent.emit(pageEvent);
+  }
+
+  public onEditClick(id: number) {
+    this.editEvent.emit(id);
   }
 }

@@ -2,7 +2,14 @@
   <span>Admin Be(er)reich</span>
 </mat-toolbar>
 <nav mat-tab-nav-bar [backgroundColor]="background">
-  <a mat-tab-link routerLink="/{{link}}" *ngFor="let link of links"
+<!--  <a mat-tab-link routerLink="/{{link}}" *ngFor="let link of links"
      (click)="activeLink = link"
-     [active]="activeLink == link"> {{link}} </a>
+     [active]="activeLink == link"> {{link}} </a>-->
+  <button mat-button [matMenuTriggerFor]="menu">Stammdaten Pflege</button>
+  <mat-menu #menu="matMenu">
+    <button routerLink="/data-entry/beer" mat-menu-item>Bier</button>
+    <button routerLink="/data-entry/brewery" mat-menu-item>Brauerei</button>
+    <button mat-menu-item>Gastronomie</button>
+  </mat-menu>
+
 </nav>

@@ -1,1 +1,8 @@
-<p>brewery works!</p>
+<app-data-table
+  [total]="total"
+  [columns]="columns"
+  [dataSource]="data"
+  (pageEvent)="onPage($event)"
+>
+
+</app-data-table>

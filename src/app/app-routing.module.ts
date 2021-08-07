@@ -12,4 +12,4 @@ const routes: Routes = [
   exports:[RouterModule]
 })
 export class AppRoutingModule { }
-//ng generate module customers --route customers --module app.module
+//ng generate model customers --route customers --model app.model
