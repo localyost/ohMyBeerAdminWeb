@@ -1,6 +1,113 @@
-<h1 mat-dialog-title>Edit Beer: {{beer.name}}</h1>
+<h1 mat-dialog-title>Edit Beer</h1>
 <div mat-dialog-content>
-  {{beer.description.de}}
+  <div class="flex-container">
+    <div>
+      <form [formGroup]="options">
+        <mat-form-field appearance="fill">
+          <mat-label>Brewery</mat-label>
+          <input
+            matInput placeholder="Placeholder"
+            [formControl]="breweryControl"
+            [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+         <!--   <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>-->
+          </mat-autocomplete>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="nameControl">
+        </mat-form-field>
+        <mat-form-field class="input-padding" appearance="fill">
+          <mat-label>Color</mat-label>
+          <input matInput placeholder="Placeholder" [formControl]="colorControl">
+        </mat-form-field>
+        <mat-form-field class="input-padding" appearance="fill">
+          <mat-label>IBU</mat-label>
+          <input type="number" matInput placeholder="Placeholder" [formControl]="ibuControl">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Gravity</mat-label>
+          <input type="number" matInput placeholder="Placeholder" [formControl]="gravityControl">
+        </mat-form-field>
+        <mat-form-field class="input-padding" appearance="fill">
+          <mat-label>Alcohol Content</mat-label>
+          <input type="number" matInput placeholder="Placeholder" [formControl]="alcoholContentControl">
+        </mat-form-field>
+        <mat-form-field class="input-padding" appearance="fill">
+          <mat-label>Fermentation</mat-label>
+          <mat-select [formControl]="fermentationControl" [(value)]="beer.fermentation">
+            <mat-option value="TOP">Top</mat-option>
+            <mat-option value="BOTTOM">Bottom</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label>Description</mat-label>
+          <mat-tab-group animationDuration="0ms">
+            <mat-tab label="DE">
+              <p>
+                <textarea rows="3" matInput placeholder="Placeholder" [formControl]="descriptions.deControl"></textarea>
+              </p>
+            </mat-tab>
+            <mat-tab label="EN">
+              <p>
+                <textarea rows="3" matInput placeholder="Description" [formControl]="descriptions.enControl"></textarea>
+              </p>
+            </mat-tab>
+            <mat-tab label="CZ">
+              <p>
+                <textarea rows="3" matInput placeholder="Description" [formControl]="descriptions.czControl"></textarea>
+              </p>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label>Food Pairing</mat-label>
+          <mat-tab-group animationDuration="0ms">
+            <mat-tab label="DE">
+              <p>
+                <textarea matInput placeholder="Food Pairing" [formControl]="foodPairingTexts.deControl"></textarea>
+              </p>
+            </mat-tab>
+            <mat-tab label="EN">
+              <p>
+                <textarea matInput placeholder="Food Pairing" [formControl]="foodPairingTexts.enControl"></textarea>
+              </p>
+            </mat-tab>
+            <mat-tab label="CZ">
+              <p>
+                <textarea matInput placeholder="Food Pairing" [formControl]="foodPairingTexts.czControl"></textarea>
+              </p>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="min-width: 100%">
+          <mat-label>Ingredients</mat-label>
+          <mat-chip-list #chipList aria-label="Ingredient selection">
+            <mat-chip
+              *ngFor="let ingredient of beer.ingredients"
+              (removed)="removeIngredient(ingredient)">
+              {{ingredient.labels.de}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="New Ingredient..."
+                   [matChipInputFor]="chipList"
+                   (matChipInputTokenEnd)="addIngredient($event)">
+          </mat-chip-list>
+        </mat-form-field>
+      </form>
+    </div>
+    <div>
+<!--      <mat-card style="min-height: 100%;"></mat-card>-->
+    </div>
+  </div>
 </div>
 
 <mat-dialog-actions style="float: left">

@@ -1,0 +1,11 @@
+.input-padding {
+  margin-left: 8px;
+}
+.flex-container {
+  display: flex;
+}
+
+.flex-container > div {
+  min-width: 650px;
+  padding: 5px;
+}

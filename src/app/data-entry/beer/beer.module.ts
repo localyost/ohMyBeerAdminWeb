@@ -9,6 +9,9 @@ import {SharedModule} from "../../shared/shared.module";
 import {MaterialDesignModule} from "../../shared/material-design/material-design.module";
 import {DataEntryModule} from "../data-entry.module";
 import {EditBeerComponent} from './edit-beer/edit-beer.component';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
+import {BreweryService} from "../services/brewery.service";
 
 
 @NgModule({
@@ -21,11 +24,14 @@ import {EditBeerComponent} from './edit-beer/edit-beer.component';
     BeerRoutingModule,
     SharedModule,
     MaterialDesignModule,
-    DataEntryModule
+    DataEntryModule,
+    ReactiveFormsModule,
   ],
   providers: [
     BeerService,
-    HttpService
+    BreweryService,
+    HttpService,
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}
   ]
 })
 export class BeerModule { }

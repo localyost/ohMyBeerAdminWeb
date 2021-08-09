@@ -1,14 +1,18 @@
-import {BaseEntity} from "../../core/classes/BaseEntity";
+import {BaseEntity} from "../../core/classes/base-entity";
+import {Language} from "../../shared/interfaces/language";
+import {Ingredient} from "./ingredient";
+import {Brewery} from "./brewery";
 
-export interface Beer extends BaseEntity{
+export interface Beer extends BaseEntity {
   name: string;
-  description: { de: string, en: string };
-  foodPairing: { de: string, en: string };
-  ingredients: { de: string, en: string };
+  description: Language;
+  foodPairing: Language;
+  ingredients: Ingredient[];
   fermentation: string;
   color: string;
   ibu: number;
   gravity: number;
   alcoholContent: number;
+  brewery: Brewery
 
 }

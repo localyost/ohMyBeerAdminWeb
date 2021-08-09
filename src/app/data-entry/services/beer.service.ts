@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from "../../core/services/http/http.service";
-import {EntityService} from "../../shared/interfaces/EntityInterfaces";
+import {EntityService} from "../../shared/interfaces/entity-interfaces";
 import {Beer} from "../model/beer";
 import {QueryParams} from "../../core/interfaces/QueryParams";
 

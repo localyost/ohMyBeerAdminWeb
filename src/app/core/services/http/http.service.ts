@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Response} from "../../../shared/interfaces/EntityInterfaces";
+import {Response} from "../../../shared/interfaces/entity-interfaces";
 import {QueryParams} from "../../interfaces/QueryParams";
 
 @Injectable()
