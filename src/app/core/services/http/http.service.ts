@@ -15,6 +15,10 @@ export class HttpService {
     return this.http.post<T>(`${this.rootUrl}${path}`, entity);
   }
 
+  public updateOne<T>(path: string, entity: BaseEntity) {
+    return this.http.put<T>(`${this.rootUrl}${path}`, entity);
+  }
+
   public deleteOne<T>(path: string, id: number) {
     return this.http.delete(`${this.rootUrl}${path}/${id}`);
   }

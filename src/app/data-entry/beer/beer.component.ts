@@ -27,7 +27,6 @@ export class BeerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBeer(0);
-    this.onEditBeer(43);
   }
 
   private getBeer(page: number) {
@@ -44,12 +43,12 @@ export class BeerComponent implements OnInit {
 
   public onEditBeer(beerId: number) {
     this.beerService.fetchOne(beerId).toPromise().then(beer => {
-      this.dialog.open(EditBeerComponent, {data: beer})
+      this.openDialog(beer);
     })
   }
 
-  public onCreate() {
-    this.dialog.open(EditBeerComponent, {data: {}})
+  public openDialog(beer: Beer | {}) {
+    this.dialog.open(EditBeerComponent, {data: beer});
   }
 
 }

@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {Beer} from "../../model/beer";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {BeerService} from "../../services/beer.service";
 
 @Component({
   selector: 'app-edit-beer',
@@ -34,7 +35,12 @@ export class EditBeerComponent {
 
   public selectedFermentationType;
 
+  private isCreate() {
+    return this.beer.id === undefined;
+  }
+
   constructor(
+    private beerService: BeerService,
     @Inject(MAT_DIALOG_DATA) public beer: Beer,
     private fb: FormBuilder) {
     this.setFormControls(beer);
@@ -78,7 +84,11 @@ export class EditBeerComponent {
   }
 
   public onSave() {
-    console.log(this.options.controls.ingredients.value)
+    if (this.isCreate()) {
+      this.beerService.createOne(this.beer);
+    } else {
+      this.beerService.updateOne(this.beer);
+    }
   }
 
 }
