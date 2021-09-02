@@ -19,10 +19,9 @@ export const _filter = (opt: string[], value: string): string[] => {
 
 @Component({
   selector: 'app-brewery-search',
-  templateUrl: './brewery-search.component.html',
-  styleUrls: ['./brewery-search.component.css']
+  templateUrl: './brewery-search.component.html'
 })
-export class BrewerySearchComponent implements OnInit{
+export class BrewerySearchComponent implements OnInit {
 
   @Input() public control!: FormControl;
 
@@ -31,7 +30,6 @@ export class BrewerySearchComponent implements OnInit{
 
   @ViewChild('brewerySearchField', { static: true })
   public matFormField!: MatFormField;
-
 
   filteredOptions!: Observable<Brewery[]>;
 
@@ -47,7 +45,7 @@ export class BrewerySearchComponent implements OnInit{
       debounceTime(400),
       distinctUntilChanged(),
       switchMap(value => {
-        return this.breweryService.searchBrewery(value);
+        return this.breweryService.search(value);
       })
     )
   }

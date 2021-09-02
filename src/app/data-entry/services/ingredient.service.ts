@@ -13,7 +13,7 @@ export class IngredientService implements EntityService<Ingredient> {
 
   constructor(private httpService: HttpService) { }
 
-  createOne(entity: Ingredient): void {
+  public createOne(entity: Ingredient): void {
         throw new Error('Method not implemented.');
     }
 
@@ -25,12 +25,12 @@ export class IngredientService implements EntityService<Ingredient> {
     return this.httpService.fetchOne<Ingredient>(id, this.path, params);
   }
 
-  public searchIngredientByName(name: string): Observable<Ingredient[]> {
+  public search(name: string): Observable<Ingredient[]> {
     let httpParams = new HttpParams().set('q', name);
     return this.httpService.get<Ingredient[]>(`${this.path}/search`, httpParams);
   }
 
-  updateOne(entity: Ingredient): void {
+  public updateOne(entity: Ingredient): void {
   }
 
 

@@ -18,11 +18,11 @@ export class BeerService implements EntityService<Beer>{
     return this.httpService.fetchOne<Beer>(id, this.path, props);
   }
 
-  updateOne(entity: Beer): void {
+  public updateOne(entity: Beer): void {
     this.httpService.updateOne<Beer>(this.path, entity).toPromise();
   }
 
-  createOne(entity: Beer): void {
+  public createOne(entity: Beer): void {
     this.httpService.createOne<Beer>(this.path, entity).toPromise();
   }
 }

@@ -10,12 +10,15 @@ import {BrewerySearchComponent} from './shared/brewery-search/brewery-search.com
 import {MaterialDesignModule} from "../../shared/material-design/material-design.module";
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
+import {BeerTypeSearchComponent} from './shared/beer-type-search/beer-type-search.component';
+import {BeerTypeService} from "../services/beer-type.service";
 
 
 @NgModule({
   declarations: [
     BreweryComponent,
-    BrewerySearchComponent
+    BrewerySearchComponent,
+    BeerTypeSearchComponent
   ],
     imports: [
         CommonModule,
@@ -25,10 +28,12 @@ import {ReactiveFormsModule} from "@angular/forms";
         ReactiveFormsModule
     ],
   exports: [
-    BrewerySearchComponent
+    BrewerySearchComponent,
+    BeerTypeSearchComponent
   ],
   providers: [
     BreweryService,
+    BeerTypeService,
     HttpService,
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}
   ]

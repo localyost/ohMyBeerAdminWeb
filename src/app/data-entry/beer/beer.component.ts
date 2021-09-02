@@ -18,7 +18,7 @@ export class BeerComponent implements OnInit {
 
   public columns: Column[] = [
     {key: 'name', type: 'string', title: "Name" },
-    {key: 'beerType', type: 'string', title: "Bier Art" },
+    {key: 'beerType', type: 'string', title: "Bier Art", objectKey: 'name'},
     {key: 'ibu', type: 'number', title: "IBU" },
     {key: 'gravity', type: 'percent', title: "Stammwurz" },
     {key: 'alcoholContent', type: 'percent', title: "Alcohol Content" }

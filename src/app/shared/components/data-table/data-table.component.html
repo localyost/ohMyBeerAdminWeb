@@ -3,7 +3,12 @@
       <ng-container *ngFor="let column of columns" matColumnDef="{{column.key}}">
         <mat-header-cell *matHeaderCellDef>{{column.title}}</mat-header-cell>
         <ng-container *ngIf="column.type == 'string'">
-          <mat-cell *matCellDef="let element">{{element[column.key]}}</mat-cell>
+          <ng-container *ngIf="column.objectKey">
+            <mat-cell *matCellDef="let element">{{element[column.key][column.objectKey]}}</mat-cell>
+          </ng-container>
+          <ng-container *ngIf="!column.objectKey">
+            <mat-cell *matCellDef="let element">{{element[column.key]}}</mat-cell>
+          </ng-container>
         </ng-container>
         <ng-container *ngIf="column.type == 'number'">
           <mat-cell class="float" *matCellDef="let element">{{element[column.key]}}</mat-cell>

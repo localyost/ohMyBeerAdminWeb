@@ -30,7 +30,7 @@ export class IngredientSelectsComponent implements OnInit {
     this.filteredOptions = this.inputControl.valueChanges.pipe(
       debounceTime(400),
       switchMap(name => {
-        return this.ingredientService.searchIngredientByName(name).pipe(
+        return this.ingredientService.search(name).pipe(
           map(value => {
             return this.filterResponses(value);
           })

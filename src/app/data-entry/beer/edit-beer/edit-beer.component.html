@@ -4,6 +4,7 @@
     <div>
       <form *ngIf="breweryControl" [formGroup]="options">
         <app-brewery-search [control]="breweryControl"></app-brewery-search>
+        <app-beer-type-search class="input-padding" [control]="beerTypeControl"></app-beer-type-search>
         <br>
         <mat-form-field appearance="fill">
           <mat-label>Name</mat-label>
@@ -40,39 +41,38 @@
           <mat-tab-group animationDuration="0ms">
             <mat-tab label="DE">
               <p>
-                <textarea rows="3" matInput placeholder="Placeholder" [formControl]="descriptions.deControl"></textarea>
+                <textarea rows="5" matInput placeholder="Placeholder" [formControl]="descriptions.deControl"></textarea>
               </p>
             </mat-tab>
             <mat-tab label="EN">
               <p>
-                <textarea rows="3" matInput placeholder="Description" [formControl]="descriptions.enControl"></textarea>
+                <textarea rows="5" matInput placeholder="Description" [formControl]="descriptions.enControl"></textarea>
               </p>
             </mat-tab>
             <mat-tab label="CZ">
               <p>
-                <textarea rows="3" matInput placeholder="Description" [formControl]="descriptions.czControl"></textarea>
+                <textarea rows="5" matInput placeholder="Description" [formControl]="descriptions.czControl"></textarea>
               </p>
             </mat-tab>
           </mat-tab-group>
         </mat-form-field>
-        <mat-divider></mat-divider>
         <br>
         <mat-form-field appearance="fill" style="width: 100%">
           <mat-label>Food Pairing</mat-label>
           <mat-tab-group animationDuration="0ms">
             <mat-tab label="DE">
               <p>
-                <textarea matInput placeholder="Food Pairing" [formControl]="foodPairingTexts.deControl"></textarea>
+                <textarea rows="5" matInput placeholder="Food Pairing" [formControl]="foodPairingTexts.deControl"></textarea>
               </p>
             </mat-tab>
             <mat-tab label="EN">
               <p>
-                <textarea matInput placeholder="Food Pairing" [formControl]="foodPairingTexts.enControl"></textarea>
+                <textarea rows="5" matInput placeholder="Food Pairing" [formControl]="foodPairingTexts.enControl"></textarea>
               </p>
             </mat-tab>
             <mat-tab label="CZ">
               <p>
-                <textarea matInput placeholder="Food Pairing" [formControl]="foodPairingTexts.czControl"></textarea>
+                <textarea rows="5" matInput placeholder="Food Pairing" [formControl]="foodPairingTexts.czControl"></textarea>
               </p>
             </mat-tab>
           </mat-tab-group>

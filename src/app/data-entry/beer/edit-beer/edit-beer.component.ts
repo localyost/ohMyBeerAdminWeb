@@ -14,6 +14,7 @@ export class EditBeerComponent {
   public options: FormGroup;
   public nameControl = new FormControl();
   public breweryControl = new FormControl();
+  public beerTypeControl = new FormControl();
 
   public descriptions = {
     deControl: new FormControl(),
@@ -60,6 +61,7 @@ export class EditBeerComponent {
       ibu: this.ibuControl,
       gravity: this.gravityControl,
       alcoholContent: this.alcoholContentControl,
+      beerType: this.beerTypeControl
     });
   }
 
@@ -67,6 +69,7 @@ export class EditBeerComponent {
     this.nameControl.setValue(beer.name);
     this.breweryControl.setValue(beer.brewery);
     this.colorControl.setValue(beer.color);
+    this.beerTypeControl.setValue(beer.beerType)
     this.fermentationControl.setValue(beer.fermentation);
     this.ibuControl.setValue(beer.ibu);
     this.gravityControl.setValue(beer.gravity);
