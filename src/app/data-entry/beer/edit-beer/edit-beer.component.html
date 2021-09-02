@@ -2,19 +2,8 @@
 <div mat-dialog-content>
   <div class="flex-container">
     <div>
-      <form [formGroup]="options">
-        <mat-form-field appearance="fill">
-          <mat-label>Brewery</mat-label>
-          <input
-            matInput placeholder="Placeholder"
-            [formControl]="breweryControl"
-            [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-         <!--   <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>-->
-          </mat-autocomplete>
-        </mat-form-field>
+      <form *ngIf="breweryControl" [formGroup]="options">
+        <app-brewery-search [control]="breweryControl"></app-brewery-search>
         <br>
         <mat-form-field appearance="fill">
           <mat-label>Name</mat-label>
@@ -104,9 +93,6 @@
         </mat-form-field>
       </form>
     </div>
-    <div>
-<!--      <mat-card style="min-height: 100%;"></mat-card>-->
-    </div>
   </div>
 </div>
 
@@ -115,7 +101,7 @@
 </mat-dialog-actions>
 
 <mat-dialog-actions style="float: right">
-  <button class="mat-raised-button">Close</button>
-  <button class="mat-raised-button mat-primary">Save</button>
+  <button class="mat-raised-button mat-primary" (click)="onSave()">Save</button>
+  <button mat-dialog-close class="mat-raised-button">Close</button>
 </mat-dialog-actions>
 

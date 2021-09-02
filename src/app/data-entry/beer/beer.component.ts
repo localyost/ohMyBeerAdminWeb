@@ -26,8 +26,7 @@ export class BeerComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.getBeer(0)
-    this.onEditBeer(358);
+    this.getBeer(0);
   }
 
   private getBeer(page: number) {

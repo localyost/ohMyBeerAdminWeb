@@ -12,6 +12,7 @@ import {EditBeerComponent} from './edit-beer/edit-beer.component';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
 import {BreweryService} from "../services/brewery.service";
+import {BreweryModule} from "../brewery/brewery.module";
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {BreweryService} from "../services/brewery.service";
     MaterialDesignModule,
     DataEntryModule,
     ReactiveFormsModule,
+    BreweryModule,
   ],
   providers: [
     BeerService,

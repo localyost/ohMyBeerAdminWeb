@@ -1,17 +1,16 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {Beer} from "../../model/beer";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {Ingredient} from "../../model/ingredient";
-import {BreweryService} from "../../services/brewery.service";
 
 @Component({
   selector: 'app-edit-beer',
   templateUrl: './edit-beer.component.html',
   styleUrls: ['./edit-beer.component.css']
 })
-export class EditBeerComponent implements OnInit {
+export class EditBeerComponent {
 
   public options: FormGroup;
   public nameControl = new FormControl();
@@ -38,10 +37,8 @@ export class EditBeerComponent implements OnInit {
   public selectedFermentationType;
 
   constructor(
-    public dialogRef: MatDialogRef<EditBeerComponent>,
     @Inject(MAT_DIALOG_DATA) public beer: Beer,
-    private fb: FormBuilder,
-    private breweryService: BreweryService) {
+    private fb: FormBuilder) {
     this.setFormControls(beer);
     this.selectedFermentationType = beer.fermentation;
     this.options = fb.group({
@@ -70,18 +67,14 @@ export class EditBeerComponent implements OnInit {
     this.ibuControl.setValue(beer.ibu);
     this.gravityControl.setValue(beer.gravity);
     this.alcoholContentControl.setValue(beer.alcoholContent);
-    this.descriptions.deControl.setValue(beer.description.de);
-    this.descriptions.enControl.setValue(beer.description.en);
-    this.descriptions.czControl.setValue(beer.description.cz);
+    this.descriptions.deControl.setValue(beer.description?.de);
+    this.descriptions.enControl.setValue(beer.description?.en);
+    this.descriptions.czControl.setValue(beer.description?.cz);
 
-    this.foodPairingTexts.deControl.setValue(beer.foodPairing.de)
-    this.foodPairingTexts.enControl.setValue(beer.foodPairing.en)
-    this.foodPairingTexts.czControl.setValue(beer.foodPairing.cz)
+    this.foodPairingTexts.deControl.setValue(beer.foodPairing?.de)
+    this.foodPairingTexts.enControl.setValue(beer.foodPairing?.en)
+    this.foodPairingTexts.czControl.setValue(beer.foodPairing?.cz)
 
-  }
-
-  ngOnInit(): void {
-    // this.beerService.
   }
 
   public addIngredient(event: MatChipInputEvent) {
@@ -90,6 +83,10 @@ export class EditBeerComponent implements OnInit {
 
   public removeIngredient(ingredient: Ingredient) {
 
+  }
+
+  public onSave() {
+    console.log(3434)
   }
 
 }

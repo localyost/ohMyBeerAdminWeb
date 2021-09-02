@@ -28,6 +28,10 @@ export class HttpService {
     }
     return params;
   }
+
+  public get<T>(path: string, params?: HttpParams) {
+    return this.http.get<T>(`${this.rootUrl}${path}`, {params});
+  }
 }
 
 export const PAGE_SIZE = 50;

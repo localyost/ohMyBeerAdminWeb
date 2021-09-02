@@ -4,6 +4,7 @@ import {Brewery} from "../model/brewery";
 import {Observable} from "rxjs";
 import {HttpService} from "../../core/services/http/http.service";
 import {QueryParams} from "../../core/interfaces/QueryParams";
+import {HttpParams} from "@angular/common/http";
 
 @Injectable()
 export class BreweryService implements EntityService<Brewery>{
@@ -17,6 +18,11 @@ export class BreweryService implements EntityService<Brewery>{
 
   public fetchOne(id: number, {props}: QueryParams): Observable<Brewery> {
     return this.httpService.fetchOne<Brewery>(id, this.path, {props});
+  }
+
+  public searchBrewery(breweryName: string) : Observable<Brewery[]> {
+    let httpParams = new HttpParams().set('q', breweryName);
+    return this.httpService.get(`${this.path}/search`, httpParams);
   }
 
 }
