@@ -16,13 +16,13 @@ export class BreweryService implements EntityService<Brewery>{
     return this.httpService.fetchMany<Brewery>(this.path, params);
   }
 
-  public fetchOne(id: number, {props}: QueryParams): Observable<Brewery> {
-    return this.httpService.fetchOne<Brewery>(id, this.path, {props});
+  public fetchOne(id: number, props: QueryParams): Observable<Brewery> {
+    return this.httpService.fetchOne<Brewery>(id, this.path, props);
   }
 
   public searchBrewery(breweryName: string) : Observable<Brewery[]> {
     let httpParams = new HttpParams().set('q', breweryName);
-    return this.httpService.get(`${this.path}/search`, httpParams);
+    return this.httpService.get<Brewery[]>(`${this.path}/search`, httpParams);
   }
 
 }

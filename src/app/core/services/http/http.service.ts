@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Response} from "../../../shared/interfaces/entity-interfaces";
 import {QueryParams} from "../../interfaces/QueryParams";
+import {BaseEntity} from "../../classes/base-entity";
 
 @Injectable()
 export class HttpService {
@@ -9,6 +10,14 @@ export class HttpService {
   private rootUrl = "http://localhost:8080/api/v1/";
 
   public constructor(protected http: HttpClient) { }
+
+  public createOne<T>(path: string, entity: BaseEntity) {
+    return this.http.post<T>(`${this.rootUrl}${path}`, entity);
+  }
+
+  public deleteOne<T>(path: string, id: number) {
+    return this.http.delete(`${this.rootUrl}${path}/${id}`);
+  }
 
   public fetchMany<T>(path: string, { page, size, props }: QueryParams) {
     let params = this.applyPropFilter({page, size}, new HttpParams());

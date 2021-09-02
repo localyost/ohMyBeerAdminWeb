@@ -2,8 +2,6 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {Beer} from "../../model/beer";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {MatChipInputEvent} from "@angular/material/chips";
-import {Ingredient} from "../../model/ingredient";
 
 @Component({
   selector: 'app-edit-beer',
@@ -75,18 +73,12 @@ export class EditBeerComponent {
     this.foodPairingTexts.enControl.setValue(beer.foodPairing?.en)
     this.foodPairingTexts.czControl.setValue(beer.foodPairing?.cz)
 
-  }
-
-  public addIngredient(event: MatChipInputEvent) {
-
-  }
-
-  public removeIngredient(ingredient: Ingredient) {
+    this.ingredientsControl.setValue(beer.ingredients);
 
   }
 
   public onSave() {
-    console.log(3434)
+    console.log(this.options.controls.ingredients.value)
   }
 
 }

@@ -8,11 +8,6 @@ import {ThemePalette} from "@angular/material/core";
 })
 export class NavigationComponent {
 
-  public links = ['data-entry/beer', 'data-entry/brewery', 'Third'];
   public background: ThemePalette;
-  activeLink = this.links[0];
 
-  public toggleBackground() {
-    this.background = this.background ? undefined : 'primary';
-  }
 }

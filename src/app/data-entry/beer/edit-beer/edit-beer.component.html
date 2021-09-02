@@ -77,20 +77,7 @@
             </mat-tab>
           </mat-tab-group>
         </mat-form-field>
-        <mat-form-field appearance="fill" style="min-width: 100%">
-          <mat-label>Ingredients</mat-label>
-          <mat-chip-list #chipList aria-label="Ingredient selection">
-            <mat-chip
-              *ngFor="let ingredient of beer.ingredients"
-              (removed)="removeIngredient(ingredient)">
-              {{ingredient.labels.de}}
-              <mat-icon matChipRemove>cancel</mat-icon>
-            </mat-chip>
-            <input placeholder="New Ingredient..."
-                   [matChipInputFor]="chipList"
-                   (matChipInputTokenEnd)="addIngredient($event)">
-          </mat-chip-list>
-        </mat-form-field>
+        <app-ingredient-selects [ingredientsControl]="ingredientsControl"></app-ingredient-selects>
       </form>
     </div>
   </div>
@@ -101,7 +88,7 @@
 </mat-dialog-actions>
 
 <mat-dialog-actions style="float: right">
-  <button class="mat-raised-button mat-primary" (click)="onSave()">Save</button>
+  <button mat-button class="mat-raised-button mat-primary" (click)="onSave()">Save</button>
   <button mat-dialog-close class="mat-raised-button">Close</button>
 </mat-dialog-actions>
 
