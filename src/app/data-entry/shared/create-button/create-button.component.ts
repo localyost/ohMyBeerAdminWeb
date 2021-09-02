@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-create-button',
-  templateUrl: './create-button.component.html',
+  template: '<button routerLink="create" mat-raised-button color="primary">create</button>',
   styleUrls: ['./create-button.component.css']
 })
-export class CreateButtonComponent implements OnInit {
+export class CreateButtonComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

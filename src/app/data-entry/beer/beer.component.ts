@@ -4,7 +4,6 @@ import {Column} from "../../shared/components/data-table/Column";
 import {Beer} from "../model/beer";
 import {PageEvent} from "@angular/material/paginator";
 import {MatDialog} from "@angular/material/dialog";
-import {EditBeerComponent} from "./edit-beer/edit-beer.component";
 
 @Component({
   selector: 'app-beer',
@@ -26,10 +25,10 @@ export class BeerComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.getBeer(0);
+    this.getBeers(0);
   }
 
-  private getBeer(page: number) {
+  private getBeers(page: number) {
     const props = this.columns.map(value => value.key);
     this.beerService.fetchMany({page, props}).toPromise().then(response => {
       this.data = response.content;
@@ -38,17 +37,8 @@ export class BeerComponent implements OnInit {
   }
 
   public onPage(pageEvent: PageEvent) {
-    this.getBeer(pageEvent.pageIndex);
+    this.getBeers(pageEvent.pageIndex);
   }
 
-  public onEditBeer(beerId: number) {
-    this.beerService.fetchOne(beerId).toPromise().then(beer => {
-      this.openDialog(beer);
-    })
-  }
-
-  public openDialog(beer: Beer | {}) {
-    this.dialog.open(EditBeerComponent, {data: beer});
-  }
 
 }

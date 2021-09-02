@@ -79,7 +79,7 @@ export class EditBeerComponent {
     this.foodPairingTexts.enControl.setValue(beer.foodPairing?.en)
     this.foodPairingTexts.czControl.setValue(beer.foodPairing?.cz)
 
-    this.ingredientsControl.setValue(beer.ingredients);
+    this.ingredientsControl.setValue(beer.ingredients || []);
 
   }
 

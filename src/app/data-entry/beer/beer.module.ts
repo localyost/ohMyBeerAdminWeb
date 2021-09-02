@@ -14,12 +14,13 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {BreweryService} from "../services/brewery.service";
 import {BreweryModule} from "../brewery/brewery.module";
 import {IngredientModule} from "../ingredient/ingredient.module";
-
+import {EditBeerDialogEntryComponent} from './edit-beer/edit-beer-dialog-entry.component';
 
 @NgModule({
   declarations: [
     BeerComponent,
-    EditBeerComponent
+    EditBeerComponent,
+    EditBeerDialogEntryComponent
   ],
     imports: [
         CommonModule,
