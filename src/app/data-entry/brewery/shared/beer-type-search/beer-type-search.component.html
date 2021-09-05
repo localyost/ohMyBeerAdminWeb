@@ -1,6 +1,6 @@
 <mat-form-field #beerTypeSearchField appearance="fill">
-  <mat-label>Brewery</mat-label>
-  <input matInput [formControl]="control" [matAutocomplete]="auto" />
+  <mat-label>Beer Type</mat-label>
+  <input required matInput [formControl]="control" [matAutocomplete]="auto" />
   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
       {{option.name}}

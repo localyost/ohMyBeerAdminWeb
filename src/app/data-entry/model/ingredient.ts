@@ -1,7 +1,7 @@
 import {BaseEntity} from "../../core/classes/base-entity";
-import {Language} from "../../shared/interfaces/language";
+import {Translation} from "../../shared/interfaces/translation";
 
 export interface Ingredient extends BaseEntity {
-  labels: Language;
+  labels: Translation;
   name: string;
 }

@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {Beer} from "../../model/beer";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {BeerService} from "../../services/beer.service";
 
 @Component({
@@ -11,29 +11,13 @@ import {BeerService} from "../../services/beer.service";
 })
 export class EditBeerComponent {
 
-  public options: FormGroup;
-  public nameControl = new FormControl();
-  public breweryControl = new FormControl();
-  public beerTypeControl = new FormControl();
+  public formGroup: FormGroup;
+  public breweryControl = new FormControl({}, Validators.required);
+  public beerTypeControl = new FormControl({}, Validators.required);
+  public descriptionGroup: FormGroup;
+  public foodParingTextGroup: FormGroup;
 
-  public descriptions = {
-    deControl: new FormControl(),
-    enControl: new FormControl(),
-    czControl: new FormControl()
-  }
-
-  public foodPairingTexts = {
-    deControl: new FormControl(),
-    enControl: new FormControl(),
-    czControl: new FormControl()
-  }
-  public colorControl = new FormControl();
   public ingredientsControl = new FormControl();
-  public fermentationControl = new FormControl();
-  public ibuControl = new FormControl();
-  public gravityControl = new FormControl();
-  public alcoholContentControl = new FormControl();
-
   public selectedFermentationType;
 
   private isCreate() {
@@ -44,54 +28,51 @@ export class EditBeerComponent {
     private beerService: BeerService,
     @Inject(MAT_DIALOG_DATA) public beer: Beer,
     private fb: FormBuilder) {
-    this.setFormControls(beer);
     this.selectedFermentationType = beer.fermentation;
-    this.options = fb.group({
-      name: this.nameControl,
-      brewery: this.breweryControl,
-      descriptionDE: this.descriptions.deControl,
-      descriptionEN: this.descriptions.enControl,
-      descriptionCZ: this.descriptions.czControl,
-      color: this.colorControl,
-      foodPairingDE: this.foodPairingTexts.deControl,
-      foodPairingEN: this.foodPairingTexts.enControl,
-      foodPairingCZ: this.foodPairingTexts.czControl,
+
+    this.descriptionGroup = fb.group({
+      de: new FormControl(beer.description?.de),
+      en: new FormControl(beer.description?.en),
+      cz: new FormControl(beer.description?.cz),
+      id: new FormControl(beer.description?.id),
+    });
+
+    this.foodParingTextGroup = fb.group({
+      de: new FormControl(beer.foodPairing?.de),
+      en: new FormControl(beer.foodPairing?.en),
+      cz: new FormControl(beer.foodPairing?.cz),
+      id: new FormControl(beer.foodPairing?.id),
+    })
+
+    this.breweryControl.setValue(beer.brewery);
+    this.beerTypeControl.setValue(beer.beerType)
+    this.ingredientsControl.setValue(beer.ingredients || []);
+
+    this.formGroup = fb.group({
+      description: this.fb.group(this.descriptionGroup),
+      foodPairing: fb.group(this.foodParingTextGroup),
       ingredients: this.ingredientsControl,
-      fermentation: this.fermentationControl,
-      ibu: this.ibuControl,
-      gravity: this.gravityControl,
-      alcoholContent: this.alcoholContentControl,
-      beerType: this.beerTypeControl
+      beerType: this.beerTypeControl,
+      brewery: this.breweryControl,
+      name: new FormControl(beer.name, Validators.required),
+      color: new FormControl(beer.color),
+      fermentation: new FormControl(beer.fermentation),
+      ibu: new FormControl(beer.ibu),
+      gravity: new FormControl(beer.gravity),
+      alcoholContent: new FormControl(beer.alcoholContent)
     });
   }
 
-  private setFormControls(beer: Beer) {
-    this.nameControl.setValue(beer.name);
-    this.breweryControl.setValue(beer.brewery);
-    this.colorControl.setValue(beer.color);
-    this.beerTypeControl.setValue(beer.beerType)
-    this.fermentationControl.setValue(beer.fermentation);
-    this.ibuControl.setValue(beer.ibu);
-    this.gravityControl.setValue(beer.gravity);
-    this.alcoholContentControl.setValue(beer.alcoholContent);
-    this.descriptions.deControl.setValue(beer.description?.de);
-    this.descriptions.enControl.setValue(beer.description?.en);
-    this.descriptions.czControl.setValue(beer.description?.cz);
-
-    this.foodPairingTexts.deControl.setValue(beer.foodPairing?.de)
-    this.foodPairingTexts.enControl.setValue(beer.foodPairing?.en)
-    this.foodPairingTexts.czControl.setValue(beer.foodPairing?.cz)
-
-    this.ingredientsControl.setValue(beer.ingredients || []);
-
-  }
-
   public onSave() {
+    const saveBeer: Beer = this.formGroup.value;
+    saveBeer.description = this.descriptionGroup.value;
+    saveBeer.foodPairing = this.foodParingTextGroup.value;
     if (this.isCreate()) {
-      this.beerService.createOne(this.beer);
-    } else {
-      this.beerService.updateOne(this.beer);
+      this.beerService.createOne(this.formGroup.value);
+    } else  {
+      saveBeer.id = this.beer.id;
+      this.beerService.updateOne(saveBeer);
     }
-  }
 
+  }
 }
