@@ -13,7 +13,7 @@ export class EditBeerComponent {
 
   public formGroup: FormGroup;
   public breweryControl = new FormControl({}, Validators.required);
-  public beerTypeControl = new FormControl({}, Validators.required);
+  public beerTypesControl = new FormControl({}, Validators.required);
   public descriptionGroup: FormGroup;
   public foodParingTextGroup: FormGroup;
 
@@ -29,7 +29,6 @@ export class EditBeerComponent {
     @Inject(MAT_DIALOG_DATA) public beer: Beer,
     private fb: FormBuilder) {
     this.selectedFermentationType = beer.fermentation;
-
     this.descriptionGroup = fb.group({
       de: new FormControl(beer.description?.de),
       en: new FormControl(beer.description?.en),
@@ -45,14 +44,14 @@ export class EditBeerComponent {
     })
 
     this.breweryControl.setValue(beer.brewery);
-    this.beerTypeControl.setValue(beer.beerType)
+    this.beerTypesControl.setValue(beer.beerTypes || [])
     this.ingredientsControl.setValue(beer.ingredients || []);
 
     this.formGroup = fb.group({
       description: this.fb.group(this.descriptionGroup),
       foodPairing: fb.group(this.foodParingTextGroup),
       ingredients: this.ingredientsControl,
-      beerType: this.beerTypeControl,
+      beerTypes: this.beerTypesControl,
       brewery: this.breweryControl,
       name: new FormControl(beer.name, Validators.required),
       color: new FormControl(beer.color),

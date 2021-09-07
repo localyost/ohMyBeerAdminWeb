@@ -1,0 +1,24 @@
+<mat-form-field appearance="fill" style="min-width: 100%">
+  <mat-label>Beer Type</mat-label>
+  <mat-chip-list #chipList aria-label="Beer Type selection">
+    <mat-chip
+      *ngFor="let beerType of beerTypesControl.value"
+      (removed)="remove(beerType)">
+      {{beerType.name}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input
+      #input
+      placeholder="Find Beer Type..."
+      [formControl]="inputControl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+  </mat-chip-list>
+
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="add($event)">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{option.name}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

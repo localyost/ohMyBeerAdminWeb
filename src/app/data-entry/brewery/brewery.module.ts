@@ -10,7 +10,7 @@ import {BrewerySearchComponent} from './shared/brewery-search/brewery-search.com
 import {MaterialDesignModule} from "../../shared/material-design/material-design.module";
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
-import {BeerTypeSearchComponent} from './shared/beer-type-search/beer-type-search.component';
+import {BeerTypeSearchComponent} from '../beer/shared/beer-type-search/beer-type-search.component';
 import {BeerTypeService} from "../services/beer-type.service";
 
 

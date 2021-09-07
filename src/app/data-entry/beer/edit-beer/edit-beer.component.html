@@ -3,14 +3,15 @@
   <div class="flex-container">
     <div>
       <form *ngIf="breweryControl" [formGroup]="formGroup">
-        <app-brewery-search [control]="breweryControl"></app-brewery-search>
-        <app-beer-type-search class="input-padding" [control]="beerTypeControl"></app-beer-type-search>
-        <br>
         <mat-form-field appearance="fill">
           <mat-label>Name</mat-label>
           <input required matInput placeholder="Placeholder" formControlName="name">
         </mat-form-field>
-        <mat-form-field class="input-padding" appearance="fill">
+        <app-brewery-search class="input-padding" [control]="breweryControl"></app-brewery-search>
+        <br>
+        <app-beer-type-search [beerTypesControl]="beerTypesControl"></app-beer-type-search>
+        <br>
+        <mat-form-field appearance="fill">
           <mat-label>Color</mat-label>
           <input matInput placeholder="Placeholder" formControlName="color">
         </mat-form-field>
