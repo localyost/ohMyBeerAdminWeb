@@ -15,12 +15,14 @@ import {BreweryService} from "../services/brewery.service";
 import {BreweryModule} from "../brewery/brewery.module";
 import {IngredientModule} from "../ingredient/ingredient.module";
 import {EditBeerDialogEntryComponent} from './edit-beer/edit-beer-dialog-entry.component';
+import {BeerImageComponent} from './shared/beer-image/beer-image.component';
 
 @NgModule({
   declarations: [
     BeerComponent,
     EditBeerComponent,
-    EditBeerDialogEntryComponent
+    EditBeerDialogEntryComponent,
+    BeerImageComponent,
   ],
     imports: [
         CommonModule,

@@ -11,8 +11,6 @@ export class BeerTypeService implements EntityService<BeerType>{
   private path = "beerType";
   constructor(private readonly httpService: HttpService) { }
 
-  public createOne(entity: BeerType): void {
-  }
 
   public fetchMany(params: QueryParams) {
     return this.httpService.fetchMany<BeerType>(this.path, params);
@@ -27,5 +25,12 @@ export class BeerTypeService implements EntityService<BeerType>{
     return this.httpService.get<BeerType[]>(`${this.path}/search`, httpParams)
   }
 
-  public updateOne(entity: BeerType): void {  }
+  createOne(entity: BeerType): Promise<BeerType> {
+    return this.httpService.createOne<BeerType>(this.path, entity).toPromise();
+  }
+
+  updateOne(entity: BeerType): Promise<BeerType> {
+    return this.httpService.updateOne<BeerType>(this.path, entity).toPromise();
+  }
+
 }

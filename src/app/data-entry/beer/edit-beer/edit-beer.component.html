@@ -81,6 +81,18 @@
         <app-ingredient-selects [ingredientsControl]="ingredientsControl"></app-ingredient-selects>
       </form>
     </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div>
+      <app-file-upload (filesUploaded)="onImagesChanged($event)"></app-file-upload>
+      <mat-grid-list cols="3" >
+        <mat-grid-tile *ngFor="let imagePath of imagePaths">
+          <button mat-icon-button color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <app-beer-image style="height: 200px; width: 100px;" mat-card-image [src]="imagePath"></app-beer-image>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
   </div>
 </div>
 

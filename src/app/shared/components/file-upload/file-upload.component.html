@@ -1,0 +1,16 @@
+<mat-form-field>
+  <div>
+    <mat-toolbar>
+      <input matInput [(ngModel)]="fileAttr" readonly name="name" />
+      <button mat-flat-button color="primary">
+        Browse File
+      </button>
+    </mat-toolbar>
+    <input
+      type="file"
+      #fileInput
+      id="uploadFile"
+      (change)="uploadFileEvt($event)"
+      name="uploadFile" multiple="multiple" accept="image/*" />
+  </div>
+</mat-form-field>

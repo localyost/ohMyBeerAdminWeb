@@ -18,11 +18,21 @@ export class BeerService implements EntityService<Beer>{
     return this.httpService.fetchOne<Beer>(id, this.path, props);
   }
 
-  public updateOne(entity: Beer): void {
-    this.httpService.updateOne<Beer>(this.path, entity).toPromise();
+  public updateOne(entity: Beer) {
+   return this.httpService.updateOne<Beer>(this.path, entity).toPromise();
   }
 
-  public createOne(entity: Beer): void {
-    this.httpService.createOne<Beer>(this.path, entity).toPromise();
+  public createOne(entity: Beer) {
+    return this.httpService.createOne<Beer>(this.path, entity).toPromise();
+  }
+
+  public uploadImages(id: number, fileList: FileList) {
+    const formData = new FormData();
+    for (let index in fileList) { formData.append('files', fileList[index]) }
+    this.httpService.post(`${this.path}/${id}/image`, formData).toPromise();
+  }
+
+  public getImagePath(path: string): string {
+    return this.httpService.appendUrl(`${this.path}/image/${path}`);
   }
 }

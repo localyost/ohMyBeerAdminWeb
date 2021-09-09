@@ -21,7 +21,10 @@ export class BeerComponent implements OnInit {
     // {key: 'beerType', type: 'string', title: "Bier Art", objectKey: 'name'},
     {key: 'ibu', type: 'number', title: "IBU" },
     {key: 'gravity', type: 'percent', title: "Stammwurz" },
-    {key: 'alcoholContent', type: 'percent', title: "Alcohol Content" }
+    {key: 'alcoholContent', type: 'percent', title: "Alcohol Content" },
+    {key: 'color', type: 'string', title: "color" },
+    {key: 'fermentation', type: 'string', title: "fermentation" },
+
   ];
 
   ngOnInit(): void {

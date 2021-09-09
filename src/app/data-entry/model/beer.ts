@@ -15,5 +15,6 @@ export interface Beer extends BaseEntity {
   ibu: number;
   gravity: number;
   alcoholContent: number;
-  brewery: Brewery
+  brewery: Brewery;
+  photos: string[];
 }

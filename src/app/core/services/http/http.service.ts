@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Response} from "../../../shared/interfaces/entity-interfaces";
 import {QueryParams} from "../../interfaces/QueryParams";
 import {BaseEntity} from "../../classes/base-entity";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class HttpService {
@@ -12,7 +13,7 @@ export class HttpService {
   public constructor(protected http: HttpClient) { }
 
   public createOne<T>(path: string, entity: BaseEntity) {
-    return this.http.post<T>(`${this.rootUrl}${path}`, entity);
+    return this.post<T>(path, entity);
   }
 
   public updateOne<T>(path: string, entity: BaseEntity) {
@@ -26,13 +27,13 @@ export class HttpService {
   public fetchMany<T>(path: string, { page, size, props }: QueryParams) {
     let params = this.applyPropFilter({page, size}, new HttpParams());
     if (props) { params = params.set('props', props.join(',')) }
-    return this.http.get<Response<T>>(`${this.rootUrl}${path}`,{params});
+    return this.get<Response<T>>(path, params)
   }
 
   public fetchOne<T>(id: number, path: string, params?: QueryParams) {
     let httpParams = new HttpParams()
     if (params && params.props) { httpParams = httpParams.set('props', params.props.join(',')) }
-    return this.http.get<T>(`${this.rootUrl}${path}/${id}`, {params: httpParams});
+    return this.get<T>(`${path}/${id}`, httpParams)
   }
 
   public applyPropFilter({page, size}: QueryParams, params: HttpParams): HttpParams {
@@ -45,6 +46,15 @@ export class HttpService {
   public get<T>(path: string, params?: HttpParams) {
     return this.http.get<T>(`${this.rootUrl}${path}`, {params});
   }
+
+  public post<T>(path: string, postObject: any, options?: {}): Observable<T> {
+    return this.http.post<T>(`${this.rootUrl}${path}`, postObject, options);
+  }
+
+  public appendUrl(path: string) {
+    return `${this.rootUrl}${path}`;
+  }
+
 }
 
 export const PAGE_SIZE = 50;

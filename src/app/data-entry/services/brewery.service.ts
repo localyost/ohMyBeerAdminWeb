@@ -25,11 +25,12 @@ export class BreweryService implements EntityService<Brewery>{
     return this.httpService.get<Brewery[]>(`${this.path}/search`, httpParams);
   }
 
-  public updateOne(entity: Brewery): void {
-    this.httpService.updateOne(this.path, entity);
+  public updateOne(entity: Brewery) {
+    return this.httpService.updateOne<Brewery>(this.path, entity).toPromise();
   }
 
-  public createOne(entity: Brewery): void {
+  public createOne(entity: Brewery) {
+    return this.httpService.createOne<Brewery>(this.path, entity).toPromise();
   }
 
 }

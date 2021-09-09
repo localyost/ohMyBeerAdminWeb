@@ -13,9 +13,6 @@ export class IngredientService implements EntityService<Ingredient> {
 
   constructor(private httpService: HttpService) { }
 
-  public createOne(entity: Ingredient): void {
-        throw new Error('Method not implemented.');
-    }
 
   public fetchMany(params: QueryParams) {
     return this.httpService.fetchMany<Ingredient>(this.path, params);
@@ -30,8 +27,12 @@ export class IngredientService implements EntityService<Ingredient> {
     return this.httpService.get<Ingredient[]>(`${this.path}/search`, httpParams);
   }
 
-  public updateOne(entity: Ingredient): void {
+  createOne(entity: Ingredient) {
+    return this.httpService.createOne<Ingredient>(this.path, entity).toPromise();
   }
 
+  updateOne(entity: Ingredient) {
+    return this.httpService.updateOne<Ingredient>(this.path, entity).toPromise();
+  }
 
 }
