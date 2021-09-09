@@ -86,7 +86,7 @@
       <app-file-upload (filesUploaded)="onImagesChanged($event)"></app-file-upload>
       <mat-grid-list cols="3" >
         <mat-grid-tile *ngFor="let imagePath of imagePaths">
-          <button mat-icon-button color="warn">
+          <button (click)="deleteImage(imagePath)" mat-icon-button color="warn">
             <mat-icon>delete</mat-icon>
           </button>
           <app-beer-image style="height: 200px; width: 100px;" mat-card-image [src]="imagePath"></app-beer-image>

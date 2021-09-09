@@ -29,7 +29,11 @@ export class BeerService implements EntityService<Beer>{
   public uploadImages(id: number, fileList: FileList) {
     const formData = new FormData();
     for (let index in fileList) { formData.append('files', fileList[index]) }
-    this.httpService.post(`${this.path}/${id}/image`, formData).toPromise();
+    this.httpService.post(`${this.path}/image/${id}`, formData).toPromise();
+  }
+
+  public deleteImage(imageName: string) {
+    return this.httpService.delete(`${this.path}/image/${imageName}`).toPromise();
   }
 
   public getImagePath(path: string): string {

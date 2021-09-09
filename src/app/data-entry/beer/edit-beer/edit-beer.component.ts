@@ -44,6 +44,12 @@ export class EditBeerComponent {
     }
   }
 
+  public deleteImage(imagePath: string) {
+    this.beerService.deleteImage(imagePath).then(() => {
+      this.imagePaths = this.imagePaths.filter(image => image !== imagePath);
+    });
+  }
+
   constructor(
     private beerService: BeerService,
     @Inject(MAT_DIALOG_DATA) public beer: Beer,

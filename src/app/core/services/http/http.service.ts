@@ -51,6 +51,10 @@ export class HttpService {
     return this.http.post<T>(`${this.rootUrl}${path}`, postObject, options);
   }
 
+  public delete<T>(path: string, options?: {}) {
+    return this.http.delete(`${this.rootUrl}${path}`, options);
+  }
+
   public appendUrl(path: string) {
     return `${this.rootUrl}${path}`;
   }
