@@ -5,16 +5,19 @@ import {MaterialDesignModule} from "./material-design/material-design.module";
 import {RouterModule} from "@angular/router";
 import {FileUploadComponent} from './components/file-upload/file-upload.component';
 import {FormsModule} from "@angular/forms";
+import {TemplateNameDirective} from './components/data-table/template-name.directive';
 
 
 @NgModule({
   declarations: [
     DataTableComponent,
     FileUploadComponent,
+    TemplateNameDirective,
   ],
     exports: [
         DataTableComponent,
-        FileUploadComponent
+        FileUploadComponent,
+        TemplateNameDirective
     ],
     imports: [
         CommonModule,

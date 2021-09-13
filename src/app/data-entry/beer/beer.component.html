@@ -5,6 +5,9 @@
   [dataSource]="data"
   [total]="total"
   (pageEvent)="onPage($event)">
+  <ng-template appTemplateName="beerTypes" let-beer>
+    {{displayBeerTypes(beer.beerTypes)}}
+  </ng-template>
 </app-data-table>
 
 <router-outlet></router-outlet>
