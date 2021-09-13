@@ -15,7 +15,10 @@ export class BreweryComponent implements OnInit {
   public data: Brewery[] = [];
   public total = 0;
   public columns: Column[] = [
-    {type: 'string', key: 'name', title: 'name'}
+    {type: 'string', key: 'name', title: 'name'},
+    {type: 'string', key: 'legalEntity', title: 'Firma'},
+    {key: 'address', title: 'Address', templateName: 'addressTemplate'},
+    {key: 'socials', title: 'Socials', templateName: 'socialsTemplate'}
   ];
 
   ngOnInit(): void {

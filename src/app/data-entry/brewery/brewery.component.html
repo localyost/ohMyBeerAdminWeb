@@ -4,5 +4,20 @@
   [dataSource]="data"
   (pageEvent)="onPage($event)"
 >
+  <ng-template appTemplateName="addressTemplate" let-brewery>
+    <p>
+      {{brewery.address?.street}} {{brewery.address?.houseNumber}} <br>
+      {{brewery.address?.postcode}} {{brewery.address?.city}} <br>
+      {{brewery.address?.country}},
+    </p>
+  </ng-template>
 
+  <ng-template appTemplateName="socialsTemplate" let-brewery>
+    <p>
+      {{brewery.socials?.website}} <br>
+      {{brewery.socials?.facebook}}<br>
+      {{brewery.socials?.instagram}}<br>
+      {{brewery.socials?.twitter}}<br>
+    </p>
+  </ng-template>
 </app-data-table>
